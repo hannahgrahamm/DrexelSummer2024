@@ -1,8 +1,9 @@
-# get packages
+# get packages needed to run code
 import pandas as pd
 data= pd.read_csv(r"/Users/hannahgraham/Library/Containers/com.microsoft.Excel/Data/Downloads/GHSL_USA.csv")
 
-#columns inpout criteria is based on
+
+#columns input criteria is based on
 filter_columns = ['BBX_LATMN' , 'BBX_LONMN']
 
 #custom column names
