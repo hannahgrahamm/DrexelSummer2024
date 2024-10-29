@@ -1,0 +1,37 @@
+# get packages
+import pandas as pd
+data= pd.read_csv(r"/Users/hannahgraham/Library/Containers/com.microsoft.Excel/Data/Downloads/GHSL_USA.csv")
+
+#columns inpout criteria is based on
+filter_columns = ['BBX_LATMN' , 'BBX_LONMN']
+
+#custom column names
+column_names = {
+    'BBX_LATMN': 'Latitude',
+    'BBX_LONMN': 'Longitude'
+}
+
+filter_values = {}
+# the leewayfor lat and long inputs
+tolerance = 0.001
+
+for column in filter_columns:
+    user_input = input(f"Enter the coordinate for '{column_names[column]}':")
+    filter_values[column] = float(user_input.split()[0])
+
+# if input data is a match, these columns will be the outputs
+columns_to_print = ['Temperature average 2015' , 'Precipitation average 2015', 'Built-Up Area in 2015 (km² )', 'Population 2015']
+
+
+for i in range(len(data[filter_columns[0]])):
+    match = True
+    for column in filter_columns:
+        if abs(data[column][i] - filter_values[column]) > tolerance:
+            match = False
+            break
+
+    if match:
+        for column in columns_to_print:
+            print(f"{column}: {data[column][i]}")
+    
+        print() 
